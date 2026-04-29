@@ -178,7 +178,7 @@ window.handleSale = function(id) {
     
     // Clear inputs
     document.getElementById('buyer-name').value = '';
-    document.getElementById('buyer-phone').value = '';
+    document.getElementById('buyer-form-number').value = '';
     
     openModal('sale-modal');
 };
@@ -187,7 +187,7 @@ function submitSale(e) {
     e.preventDefault();
     const id = document.getElementById('sale-form-id').value;
     const name = document.getElementById('buyer-name').value;
-    const phone = document.getElementById('buyer-phone').value;
+    const formNumber = document.getElementById('buyer-form-number').value;
     
     const item = state.inventory[state.currentCategory][id];
     
@@ -196,7 +196,7 @@ function submitSale(e) {
         if (!item.sales) item.sales = [];
         item.sales.push({
             name,
-            phone,
+            formNumber,
             date: new Date().toISOString()
         });
         
@@ -288,7 +288,7 @@ function renderSales() {
             <td class="sale-date">${date}</td>
             <td class="sale-form-id">${sale.formId}</td>
             <td>${sale.name}</td>
-            <td>${sale.phone}</td>
+            <td>${sale.formNumber || sale.phone || '-'}</td>
         `;
         list.appendChild(row);
     });
