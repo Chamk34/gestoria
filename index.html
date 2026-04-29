@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antigravity | Gestión de Formularios</title>
+    <meta name="description" content="Sistema premium de gestión y venta de formularios registrales para vehículos.">
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <header class="app-header">
+            <div class="logo">
+                <i data-lucide="zap" class="logo-icon"></i>
+                <span class="logo-text">ANTIGRAVITY</span>
+            </div>
+            <nav class="header-nav">
+                <button id="btn-show-history" class="btn-ghost">
+                    <i data-lucide="history"></i>
+                    <span>Historial</span>
+                </button>
+            </nav>
+        </header>
+
+        <main id="view-container">
+            <!-- View: Main Selection -->
+            <section id="menu-view" class="view active">
+                <div class="hero-text">
+                    <h1>Gestión Registral</h1>
+                    <p>Seleccione una categoría para gestionar el inventario</p>
+                </div>
+                <div class="category-grid">
+                    <div class="category-card" data-category="autos" id="card-autos">
+                        <div class="card-glow"></div>
+                        <div class="card-content">
+                            <i data-lucide="car" class="card-icon"></i>
+                            <h2>AUTOS</h2>
+                            <p>Formularios Automotores</p>
+                        </div>
+                    </div>
+                    <div class="category-card" data-category="motos" id="card-motos">
+                        <div class="card-glow"></div>
+                        <div class="card-content">
+                            <i data-lucide="bike" class="card-icon"></i>
+                            <h2>MOTOS</h2>
+                            <p>Formularios Motovehículos</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- View: Dashboard -->
+            <section id="dashboard-view" class="view">
+                <div class="dashboard-header">
+                    <button id="btn-back" class="btn-icon">
+                        <i data-lucide="arrow-left"></i>
+                        <span>Volver</span>
+                    </button>
+                    <h2 id="category-title">Categoría</h2>
+                    <div class="search-wrapper">
+                        <i data-lucide="search" class="search-icon"></i>
+                        <input type="text" id="search-input" placeholder="Buscar formulario...">
+                    </div>
+                </div>
+
+                <div id="forms-list" class="forms-grid">
+                    <!-- Dynamic forms will be injected here -->
+                </div>
+            </section>
+
+            <!-- View: Sales History -->
+            <section id="sales-view" class="view">
+                <div class="dashboard-header">
+                    <button id="btn-back-from-sales" class="btn-icon">
+                        <i data-lucide="arrow-left"></i>
+                        <span>Volver</span>
+                    </button>
+                    <h2>Historial de Ventas</h2>
+                </div>
+                
+                <div class="sales-container">
+                    <table class="sales-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Formulario</th>
+                                <th>Comprador</th>
+                                <th>Teléfono</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sales-list">
+                            <!-- Dynamic sales records will be injected here -->
+                        </tbody>
+                    </table>
+                    <div id="sales-empty" class="no-results" style="display: none;">
+                        No hay ventas registradas aún.
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>&copy; 2026 Antigravity System. Todos los derechos reservados. <span style="opacity: 0.5;">v1.2</span></p>
+        </footer>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-overlay" class="modal-overlay">
+        <!-- Sale Modal -->
+        <div id="sale-modal" class="modal-content">
+            <h2 id="modal-title">Registrar Venta</h2>
+            <p id="modal-subtitle">Ingrese los datos del comprador</p>
+            <form id="sale-form" class="modal-form">
+                <input type="hidden" id="sale-form-id">
+                <div class="input-group">
+                    <label for="buyer-name">Nombre Completo</label>
+                    <input type="text" id="buyer-name" required placeholder="Ej: Juan Pérez">
+                </div>
+                <div class="input-group">
+                    <label for="buyer-phone">Teléfono</label>
+                    <input type="tel" id="buyer-phone" required placeholder="Ej: 11 1234 5678">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Confirmar Venta</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Stock Modal -->
+        <div id="stock-modal" class="modal-content">
+            <h2>Ajustar Stock</h2>
+            <p id="stock-modal-subtitle">Actualizar cantidad disponible</p>
+            <form id="stock-form" class="modal-form">
+                <input type="hidden" id="stock-form-id">
+                <div class="input-group">
+                    <label for="new-stock">Cantidad en Stock</label>
+                    <input type="number" id="new-stock" required min="0" placeholder="0">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
