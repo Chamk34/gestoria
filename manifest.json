@@ -1,0 +1,23 @@
+{
+  "name": "Antigravity | Gestión de Formularios",
+  "short_name": "Antigravity",
+  "description": "Sistema premium de gestión y venta de formularios registrales para vehículos.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#00f2ff",
+  "icons": [
+    {
+      "src": "imagen.png.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "imagen.png.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
