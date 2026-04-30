@@ -546,6 +546,11 @@ body {
     color: var(--accent);
 }
 
+.sale-price {
+    font-weight: 700;
+    color: var(--success);
+}
+
 /* Responsive */
 @media (max-width: 640px) {
     .hero-text h1 { font-size: 2.25rem; }

@@ -96,6 +96,7 @@
                                 <th>Formulario</th>
                                 <th>Nombre completo</th>
                                 <th>Número de formulario</th>
+                                <th>Precio</th>
                             </tr>
                         </thead>
                         <tbody id="sales-list">
@@ -129,6 +130,10 @@
                 <div class="input-group">
                     <label for="buyer-form-number">Número de formulario</label>
                     <input type="text" id="buyer-form-number" required placeholder="Número de formulario">
+                </div>
+                <div class="input-group">
+                    <label for="sale-price">Precio</label>
+                    <input type="number" id="sale-price" required placeholder="0.00" step="0.01">
                 </div>
                 <div class="modal-actions">
                     <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
